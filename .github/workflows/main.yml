@@ -25,6 +25,10 @@ jobs:
           pwd
           ls -al
           node server.js
-          git add .
-          git commit -m 'update src/*'
-          git push
+          cat README.md
+          git config --system --list
+          git config --global --list
+          git config --local  --list
+      # git add .
+      # git commit -m 'update src/*'
+      # git push
