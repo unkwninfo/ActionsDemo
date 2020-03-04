@@ -1,5 +1,6 @@
 name: README.log
 
+# event 事件
 on:
   push:
     branches: 
@@ -8,12 +9,18 @@ on:
       - src/*
 
 jobs:
+  # job_id 自定义
   log:
+    # 工作环境
     runs-on: ubuntu-latest
     container: 
       image: node:latest
+    # 步骤
     steps:
-    - uses: actions/checkout@v2
-    - run: |
-        node -v
-        pwd
+      # pull codes
+      - uses: actions/checkout@v2
+      # shell command
+      - run: |
+          node -v
+          pwd
+          ls
