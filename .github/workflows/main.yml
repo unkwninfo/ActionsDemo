@@ -24,3 +24,7 @@ jobs:
           node -v
           pwd
           ls -al
+          node server.js
+          git add .
+          git commit -m 'update src/*'
+          git push
