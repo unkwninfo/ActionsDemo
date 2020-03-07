@@ -31,36 +31,32 @@
 Test Times: 1
 Test Times: 2
 Test Times: 3
+Test Times: 4
+Test Times: 5
+Test Times: 6
+Test Times: 7
+Test Times: 8
         </pre>
         <h2>.github/workflows/main.yml</h2>
         <pre>
-name: README.log
-
-# event 事件
-on:
+name: ActionsDemo main.yml
+on: # workflow 触发事件
   push:
     branches: 
       - master
     paths:
       - src/*
-
-jobs:
-  # job_id 自定义
-  log:
-    # 工作环境
-    runs-on: ubuntu-latest
+jobs: # 任务集
+  build-deploy: # 自定义 job_id
+    runs-on: ubuntu-latest # 虚拟机环境
     container: 
-      image: node:latest
-    # 步骤
-    steps:
-      # pull codes
-      # - uses: actions/checkout@v2
-      - run: |
+      image: node:latest # 进入容器 steps run in bash/shell
+    steps: # 步骤集
+      - name: git clone && git config && node server.js && git push
+        run: |
           git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
-      # shell command
-      - run: |
           cd ActionsDemo
           node server.js
           git add -A
