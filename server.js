@@ -49,3 +49,5 @@ let data = '<!DOCTYPE html>\n'
 fs.writeFileSync('docs/index.html', data, (err) => {
     return console.error(err);
 });
+
+console.log('docs/index.html is updated');

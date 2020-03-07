@@ -18,12 +18,14 @@ jobs:
     # 步骤
     steps:
       # pull codes
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
+      - run: |
+          git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
+          git config --global user.name "unkwninfo"
+          git config --global user.email "unkwninfo@gmail.com"
       # shell command
       - run: |
           node server.js
-          git config --global user.name "unkwninfo"
-          git config --global user.email "unkwninfo@gmail.com"
           git add -A
           git commit -m "Actions src/* => docs/*"
           git push
