@@ -25,6 +25,7 @@ jobs:
           git config --global user.email "unkwninfo@gmail.com"
       # shell command
       - run: |
+          cd ActionsDemo
           node server.js
           git add -A
           git commit -m "Actions src/* => docs/*"
