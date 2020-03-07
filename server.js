@@ -8,16 +8,27 @@
 
 const fs = require('fs');
 
-let data = "# ActionsDemo\nTest Actions\n\n"
-    + "### src/log\n"
-    + "```log\n"
+let data = '<!DOCTYPE html>\n'
+    + '<html lang="zh">\n'
+    + '<head>\n'
+    + '    <meta charset="UTF-8">\n'
+    + '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+    + '    <title>ActionsDemo</title>\n'
+    + '</head>\n'
+    + '<body>\n'
+    + '    <h1>ActionsDemo</h1>\n'
+    + '    <p>Test Actions</p>\n'
+    + '    <h2>src/log</h2>\n'
+    + '    <p>\n'
     + fs.readFileSync('src/log')
-    + "\n```\n\n"
-    + "### .github/workflows/main.yml\n"
-    + "```yml\n"
+    + '    </p>\n'
+    + '    <h2>.github/workflows/main.yml</h2>\n'
+    + '    <p>\n'
     + fs.readFileSync('.github/workflows/main.yml')
-    + "\n```\n";
+    + '    </p>\n'
+    + '</body>\n'
+    + '</html>\n';
 
-fs.writeFileSync('README.md', data, (err) => {
+fs.writeFileSync('docs/index.html', data, (err) => {
     return console.error(err);
 });
