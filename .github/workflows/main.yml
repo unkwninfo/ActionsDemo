@@ -1,4 +1,4 @@
-name: README.log
+name: Actions src/* => docs/*
 
 # event 事件
 on:
@@ -9,24 +9,36 @@ on:
       - src/*
 
 jobs:
+
   # job_id 自定义
-  log:
+  build:
+
     # 工作环境
     runs-on: ubuntu-latest
     container: 
       image: node:latest
+
     # 步骤
     steps:
-      # pull codes
+
       # - uses: actions/checkout@v2
+
+      - name: git clone && git config
+      # run in bash/shell
       - run: |
           git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
-      # shell command
+
+      - name: node server.js
+      # run in bash/shell
       - run: |
           cd ActionsDemo
           node server.js
+
+      - name: git push
+      # run in bash/shell
+      - run: |
           git add -A
           git commit -m "Actions src/* => docs/*"
           git push
