@@ -6,22 +6,18 @@ on: # workflow 触发事件
     paths:
       - src/*
 jobs: # 任务集
-  build: # 自定义 job_id
+  build-deploy: # 自定义 job_id
     runs-on: ubuntu-latest # 虚拟机环境
     container: 
       image: node:latest # 进入容器 steps run in bash/shell
     steps: # 步骤集
-      - name: git clone && git config
+      - name: git clone && git config && node server.js && git push
         run: |
           git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
-      - name: node server.js
-        run: |
           cd ActionsDemo
           node server.js
-      - name: git push
-        run: |
           git add -A
           git commit -m "Actions src/* => docs/*"
           git push
