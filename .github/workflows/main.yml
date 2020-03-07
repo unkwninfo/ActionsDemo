@@ -1,4 +1,4 @@
-name: Actions src/* => docs/*
+name: ActionsDemo
 
 # event 事件
 on:
