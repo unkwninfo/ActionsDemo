@@ -1,43 +1,27 @@
-name: ActionsDemo
-
-# event 事件
-on:
+name: ActionsDemo main.yml
+on: # workflow 触发事件
   push:
     branches: 
       - master
     paths:
       - src/*
-
-jobs:
-
-  # job_id 自定义
-  build:
-
-    # 工作环境
-    runs-on: ubuntu-latest
+jobs: # 任务集
+  build: # 自定义 job_id
+    runs-on: ubuntu-latest # 虚拟机环境
     container: 
-      image: node:latest
-
-    # 步骤
-    steps:
-
+      image: node:latest # 进入容器 steps run in bash/shell
+    steps: # 步骤集
       # - uses: actions/checkout@v2
-
       - name: git clone && git config
-      # run in bash/shell
       - run: |
           git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
-
       - name: node server.js
-      # run in bash/shell
       - run: |
           cd ActionsDemo
           node server.js
-
       - name: git push
-      # run in bash/shell
       - run: |
           git add -A
           git commit -m "Actions src/* => docs/*"
