@@ -12,16 +12,16 @@ jobs: # 任务集
       image: node:latest # 进入容器 steps run in bash/shell
     steps: # 步骤集
       - name: git clone && git config
-      - run: |
+        run: |
           git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
       - name: node server.js
-      - run: |
+        run: |
           cd ActionsDemo
           node server.js
       - name: git push
-      - run: |
+        run: |
           git add -A
           git commit -m "Actions src/* => docs/*"
           git push
