@@ -4,9 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ActionsDemo</title>
+    <link href="https://cdn.bootcss.com/github-markdown-css/4.0.0/github-markdown.min.css" rel="stylesheet">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>ActionsDemo</h1>
-    <p>Test Actions</p>
+    <article class="markdown-body">
+        <h1>ActionsDemo</h1>
+        <p>Test Actions</p>
+        <h2>src/log</h2>
+        <pre>
+# log
+
+Test Times: 1
+Test Times: 2
+Test Times: 3
+        </pre>
+        <h2>.github/workflows/main.yml</h2>
+        <pre>
+name: README.log
+
+# event 事件
+on:
+  push:
+    branches: 
+      - master
+    paths:
+      - src/*
+
+jobs:
+  # job_id 自定义
+  log:
+    # 工作环境
+    runs-on: ubuntu-latest
+    container: 
+      image: node:latest
+    # 步骤
+    steps:
+      # pull codes
+      # - uses: actions/checkout@v2
+      - run: |
+          git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
+          git config --global user.name "unkwninfo"
+          git config --global user.email "unkwninfo@gmail.com"
+      # shell command
+      - run: |
+          cd ActionsDemo
+          node server.js
+          git add -A
+          git commit -m "Actions src/* => docs/*"
+          git push
+        </pre>
+    </article>
 </body>
 </html>
