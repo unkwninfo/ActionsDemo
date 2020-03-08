@@ -21,6 +21,9 @@ jobs:
         pwd
         git config -l
         sudo apt install tree
+        echo ${{ github.repository }}
+        echo ${{ github.token }}
+        echo ${{ github.workspace }}
     
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
