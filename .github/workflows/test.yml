@@ -20,7 +20,9 @@ jobs:
         git config --global user.email "unkwninfo@gmail.com"
         tree -a
         pwd
-        date >> ${{ github.workspace }}/src/log
+        cd ${{ github.workspace }}
+        date >> src/log
+        cat src/log
         git add -A
         git commit -m "update src/log +date"
         git push
