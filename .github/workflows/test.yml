@@ -19,11 +19,14 @@ jobs:
     - name: pwd && install tree
       run: |
         pwd
+        git config -l
         sudo apt install tree
     
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - run: pwd
+    - run: |
+        pwd
+        git config -l
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
@@ -34,4 +37,5 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+        git config -l
         tree -a /home/runner/work
