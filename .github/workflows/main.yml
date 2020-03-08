@@ -7,7 +7,6 @@ on: # workflow 触发事件
       - src/*
 jobs: # 任务集
   build-deploy: # 自定义 job_id
-    runs-on: ubuntu-latest # 虚拟机环境
     container: 
       image: node:latest # 进入容器 steps run in bash/shell
     steps: # 步骤集
