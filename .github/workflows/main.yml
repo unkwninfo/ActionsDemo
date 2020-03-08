@@ -1,17 +1,19 @@
 name: ActionsDemo main.yml
-on: # workflow 触发事件
+on: # workflow 触发事件 <must>
   push:
     branches: 
       - master
     paths:
       - src/*
-jobs: # 任务集
-  build-deploy: # 自定义 job_id
-    container: 
-      image: node:latest # 进入容器 steps run in bash/shell
-    steps: # 步骤集
+jobs: # 任务集 <must>
+  build-deploy: # 自定义 job_id <must>
+    runs-on: [ubuntu-latest] # 虚拟机环境 <must>
+    # container: 
+    #  image: node:latest # 进入容器 steps run in bash/shell
+    steps: # 步骤集 <must>
       - name: git clone && git config && node server.js && git push
-        run: |
+        run: | # CLI <must>
+          pwd
           git clone https://${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
