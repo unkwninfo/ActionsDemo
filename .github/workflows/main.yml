@@ -13,7 +13,7 @@ jobs: # 任务集
     steps: # 步骤集
       - name: git clone && git config && node server.js && git push
         run: |
-          git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
+          git clone https://${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
           cd ActionsDemo
