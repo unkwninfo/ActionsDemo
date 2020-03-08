@@ -7,17 +7,15 @@ on: # workflow 触发事件 <must>
       - src/*
 jobs: # 任务集 <must>
   build-deploy: # 自定义 job_id <must>
-    runs-on: [ubuntu-latest] # 虚拟机环境 <must>
+    runs-on: ubuntu-latest # 虚拟机环境 <must>
     # container: 
     #  image: node:latest # 进入容器 steps run in bash/shell
     steps: # 步骤集 <must>
       - name: git clone && git config && node server.js && git push
         run: | # CLI <must>
-          pwd
-          git clone https://${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
-          cd ActionsDemo
+          git clone https://${{ secrets.REST_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.workspace }}
           node server.js
           git add -A
           git commit -m "Actions src/* => docs/*"
