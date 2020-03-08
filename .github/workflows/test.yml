@@ -15,9 +15,10 @@ jobs:
         sudo apt install tree
         git config -l
         cd ..
-        git clone https://${{ github.token }}@github.com/${{ github.repository }}.git
+        git clone https://${{ secrets.REST_TOKEN }}@github.com/${{ github.repository }}.git
         git config --global user.name "unkwninfo"
         git config --global user.email "unkwninfo@gmail.com"
+        git config -l
         tree -a
         pwd
         cd ${{ github.workspace }}
