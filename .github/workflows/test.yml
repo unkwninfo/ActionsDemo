@@ -7,7 +7,7 @@ jobs:
     - name: Test Step
       run: |
         pwd
-        apt install tree
+        sudo apt install tree
         git config -l
         cd ..
         git clone https://${{ github.token }}@github.com/${{ github.repository }}.git
