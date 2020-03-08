@@ -1,5 +1,10 @@
 name: Test CI
-on: push
+on:
+  push:
+    branches: 
+      - master
+    paths:
+      - .github/workflows/test.yml
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,6 +18,9 @@ jobs:
         git clone https://${{ github.token }}@github.com/${{ github.repository }}.git
         git config --global user.name "unkwninfo"
         git config --global user.email "unkwninfo@gmail.com"
-        tree
-        echo ${{ github.workspace }}
-        date
+        tree -a
+        pwd
+        date >> ${{ github.workspace }}/src/log
+        git add -A
+        git commit -m "update src/log +date"
+        git push
