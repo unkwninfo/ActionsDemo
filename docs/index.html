@@ -36,6 +36,7 @@ Test Times: 5
 Test Times: 6
 Test Times: 7
 Test Times: 8
+Test Times: 9
         </pre>
         <h2>.github/workflows/main.yml</h2>
         <pre>
@@ -54,7 +55,7 @@ jobs: # 任务集
     steps: # 步骤集
       - name: git clone && git config && node server.js && git push
         run: |
-          git clone https://unkwninfo:${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
+          git clone https://${{ secrets.REST_TOKEN }}@github.com/unkwninfo/ActionsDemo.git
           git config --global user.name "unkwninfo"
           git config --global user.email "unkwninfo@gmail.com"
           cd ActionsDemo
